@@ -1,5 +1,5 @@
-n -t * -s 0  -x 5 -y 5 -Z 0 -z 30  -v circle -c black
-n -t * -s 1  -x 490 -y 285 -Z 0 -z 30  -v circle -c black
+n -t * -s 0  -x 105 -y 105 -Z 0 -z 30  -v circle -c black
+n -t * -s 1  -x 390 -y 285 -Z 0 -z 30  -v circle -c black
 n -t * -s 2  -x 150 -y 240 -Z 0 -z 30  -v circle -c black
 V -t * -v 1.0a5 -a 0
 W -t * -x 500 -y 400
@@ -8,21 +8,21 @@ A -t * -h 1 -m 1073741823 -s 0
 + -t 0.032821055 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR 
 - -t 0.032821055 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
 h -t 0.032821055 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
-r -t 0.033802198 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
+r -t 0.033801869 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 0 -k RTR
 + -t 0.178591360 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR 
 - -t 0.178591360 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
 h -t 0.178591360 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
-r -t 0.179672281 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
-r -t 0.179672503 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
-n -t 0.500000 -s 0 -x 5.000000 -y 5.000000 -U 35.355339 -V 35.355339 -T 6.929646
+r -t 0.179671834 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+r -t 0.179672174 -s 1 -d -1 -p message -e 32 -c 2 -a 0 -i 1 -k RTR
+n -t 0.500000 -s 0 -x 105.000000 -y 105.000000 -U 35.355339 -V 35.355339 -T 4.101219
 + -t 0.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 2 -k AGT 
 - -t 0.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 2 -k AGT
 h -t 0.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 2 -k AGT
-n -t 0.700000 -s 1 -x 490.000000 -y 285.000000 -U -60.000000 -V 0.000000 -T 7.416667
+n -t 0.700000 -s 1 -x 390.000000 -y 285.000000 -U -60.000000 -V 0.000000 -T 5.750000
 + -t 1.113402886 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR 
 - -t 1.113402886 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
 h -t 1.113402886 -s 0 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
-r -t 1.114383707 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
+r -t 1.114383272 -s 2 -d -1 -p message -e 32 -c 2 -a 0 -i 3 -k RTR
 + -t 3.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 4 -k AGT 
 - -t 3.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 4 -k AGT
 h -t 3.500000000 -s 0 -d -1 -p tcp -e 40 -c 2 -a 0 -i 4 -k AGT

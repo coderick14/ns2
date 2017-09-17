@@ -16,10 +16,10 @@ set val(y)                400                         ;# Y dimension of topograp
 set val(stop)             5                           ;# time of simulation end
 
 $val(netif) set CPThresh_ 10.0
-# $val(netif) set CSThresh_ 3.65262e-10 ;#250m
-# $val(netif) set RXThresh_ 3.65262e-10 ;#250m
-$val(netif) set CSThresh_ 2.28289e-11 ;#500m
-$val(netif) set RXThresh_ 2.28289e-11 ;#500m
+$val(netif) set CSThresh_ 3.65262e-10 ;#250m
+$val(netif) set RXThresh_ 3.65262e-10 ;#250m
+# $val(netif) set CSThresh_ 2.28289e-11 ;#500m
+# $val(netif) set RXThresh_ 2.28289e-11 ;#500m
 $val(netif) set Rb_ 2*1e6
 $val(netif) set Pt_ 0.2818
 $val(netif) set freq_ 914e+6
@@ -29,6 +29,7 @@ set ns [new Simulator]
 
 set tracefd  [open manet.tr w]
 set namtrace [open manet.nam w]
+set rssfd    [open rss250.tr w]
 
 $ns trace-all $tracefd
 $ns namtrace-all-wireless $namtrace $val(x) $val(y)
@@ -62,18 +63,37 @@ proc finish {} {
     close $tracefd
     close $namtrace
     # exec nam manet.nam &
-    # exit 0
+    exit 0
+}
+
+proc record {} {
+    global ns rssfd node_
+    set tick 0.5
+    set now [$ns now]
+
+    set srcnode_x [$node_(0) set X_ ]
+    set srcnode_y [$node_(0) set Y_ ]
+
+    set destnode_x [$node_(1) set X_ ]
+    set destnode_y [$node_(1) set Y_ ]
+
+    set distance [expr pow(pow($destnode_x - $srcnode_x,2) + pow($destnode_y - $srcnode_y,2),0.5)]
+    set RSSval [expr 0.2818/$distance]
+
+    puts $rssfd "$now $RSSval"
+
+    $ns at [expr $now+$tick] "record"
 }
 
 for {set i 0} {$i < $val(nn)} {incr i} {
     set node_($i) [$ns node]
 }
 
-$node_(0) set X_ 5.0
-$node_(0) set Y_ 5.0
+$node_(0) set X_ 105.0
+$node_(0) set Y_ 105.0
 $node_(0) set Z_ 0.0
 
-$node_(1) set X_ 490.0
+$node_(1) set X_ 390.0
 $node_(1) set Y_ 285.0
 $node_(1) set Z_ 0.0
 
@@ -96,6 +116,7 @@ $ns connect $tcp $sink
 set ftp [new Application/FTP]
 $ftp attach-agent $tcp
 $ns at 0.5 "$ftp start"
+$ns at 4.5 "$ftp stop"
 
 for {set i 0} {$i < $val(nn)} {incr i} {
     $ns initial_node_pos $node_($i) 30
@@ -105,6 +126,7 @@ for {set i 0} {$i < $val(nn)} {incr i} {
     $ns at $val(stop) "$node_($i) reset"
 }
 
+$ns at 0.5 "record"
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)"
 $ns at $val(stop) "finish"
 $ns at 5.1 "puts \"NS Exiting\"; $ns halt"
